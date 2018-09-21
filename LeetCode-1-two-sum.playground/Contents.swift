@@ -1,6 +1,6 @@
 //: Playground - noun: a place where people can play
 
-import UIKit
+//import UIKit
 
 /**
  https://leetcode.com/problems/two-sum/
@@ -17,18 +17,53 @@ import UIKit
 
 print("------111111-----------")
 
-func towSum(_ nums: [Int], _ target: Int) -> (Int, Int) {
-    for num in nums {
-        if nums.contains(target - num) && num != target - num {
-            return (nums.index(of: num)!, nums.index(of: target - num)!)
+func twoSum1(_ nums: [Int], _ target: Int) -> (Int, Int) {
+//    let sets = Set(nums)
+//    for num in nums {
+//        if nums.contains(target - num) && num != target - num {
+//            return (nums.index(of: num)!, nums.index(of: target - num)!)
+//        }
+//    }
+    for i in 0..<nums.endIndex {
+        for j in 0..<nums.endIndex {
+            if nums[i] + nums[j] == target && i != j {
+                return (i ,j)
+            }
         }
+    }
+    
+    fatalError("未找到")
+}
+print(twoSum1([22, 7, 7, 12, 15], 14))
+
+print("------2222222-----------")
+func twoSum2(_ nums: [Int], _ target: Int) -> (Int, Int) {
+    var lookup = [Int : Int]()
+    for (index, number) in nums.enumerated() {
+        if lookup.keys.contains(target - number)  {
+            return (lookup[target - number]! , index)
+        }
+        lookup[number] = index
     }
     fatalError("未找到")
 }
+
+print(twoSum2([2, 7, 7, 11, 15], 14))
+
+print("------333333-----------")
+
+//func twoSum3(_ nums:[Int], _ target : Int) -> (Int, Int) {
+//    
+//    for (k, i) in nums.enumerated() {
+//        print(k)
+//        print(i)
+//        print("\n")
+//    }
+//    
+//    
+//    fatalError("未找到")
+//}
 //
-print(towSum([2, 7, 11, 15], 13))
-
-print("------2222222-----------")
-
+//print(twoSum3([2, 7, 7, 11, 15], 14))
 
 
